@@ -34,7 +34,7 @@ const VideoPlayer = () => {
     if (!video) return;
 
     const videoSrc =
-      "/stream/playlist.m3u8";
+      "https://pickleball-system-qw5u.onrender.com/stream/playlist.m3u8";
 
     if (Hls.isSupported()) {
       const hls = new Hls({

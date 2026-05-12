@@ -21,7 +21,7 @@ export const events = [
       "/thumbnails/serve.jpg",
 
     replayClip:
-      "/clips/serve.mp4",
+      "https://pickleball-system-qw5u.onrender.com/clips/serve.mp4",
   },
 
   {
@@ -46,7 +46,7 @@ export const events = [
       "/thumbnails/rally.jpg",
 
     replayClip:
-      "/clips/rally.mp4",
+      "https://pickleball-system-qw5u.onrender.com/clips/rally.mp4",
   },
 
   {
@@ -71,7 +71,7 @@ export const events = [
       "/thumbnails/smash.jpg",
 
     replayClip:
-      "/clips/smash.mp4",
+      "https://pickleball-system-qw5u.onrender.com/clips/smash.mp4",
   },
 
   {
@@ -96,7 +96,7 @@ export const events = [
       "/thumbnails/winner.jpg",
 
     replayClip:
-      "/clips/winner.mp4",
+      "https://pickleball-system-qw5u.onrender.com/clips/winner.mp4",
   },
 
   {
@@ -121,6 +121,6 @@ export const events = [
       "/thumbnails/fastserve.jpg",
 
     replayClip:
-      "/clips/fastserve.mp4",
+      "https://pickleball-system-qw5u.onrender.com/clips/fastserve.mp4",
   },
 ];
