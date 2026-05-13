@@ -389,8 +389,8 @@ const VideoPlayer = () => {
               }}
             />
 
-            {/* OTT CONTROLS */}
-            <div
+              {/* OTT CONTROLS */}
+              <div
               style={{
                 position: "absolute",
                 inset: 0,
