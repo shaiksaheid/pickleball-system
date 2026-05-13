@@ -389,186 +389,217 @@ const VideoPlayer = () => {
               }}
             />
 
-            {/* OTT CONTROLS */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "45px",
-                zIndex: 10,
-                opacity: showControls
-                  ? 1
-                  : 0,
-                transition:
-                  "opacity 0.4s ease",
-                pointerEvents:
-                  showControls
-                    ? "auto"
-                    : "none",
-              }}
-            >
-              {/* BACKWARD */}
-              <button
-                onClick={backward10}
-                style={overlayButton}
-              >
-                ↺
-                <div
-                  style={{
-                    fontSize: "18px",
-                    marginTop: "-5px",
-                  }}
-                >
-                  10
-                </div>
-              </button>
+            /* OTT CONTROLS */
+<div
+  style={{
+    position: "absolute",
+    inset: 0,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "45px",
+    zIndex: 10,
+    opacity: showControls ? 1 : 0,
+    transition: "opacity 0.4s ease",
+    pointerEvents: showControls
+      ? "auto"
+      : "none",
+  }}
+>
+  {/* BACKWARD */}
+  <button
+    onClick={backward10}
+    style={overlayButton}
+  >
+    ↺
 
-              {/* PLAY / PAUSE */}
-              <button
-                onClick={togglePlay}
-                style={{
-                  ...overlayButton,
-                  width: "90px",
-                  height: "90px",
-                  fontSize: "34px",
-                }}
-              >
-                {isPlaying
-                  ? "⏸"
-                  : "▶"}
-              </button>
-
-              {/* FORWARD */}
-              <button
-                onClick={forward10}
-                style={overlayButton}
-              >
-                ↻
-                <div
-                  style={{
-                    fontSize: "18px",
-                    marginTop: "-5px",
-                  }}
-                >
-                  10
-                </div>
-              </button>
-            </div>
-          </div>
-
-          {/* TIMELINE */}
-          <div
-            style={{
-              marginTop: "18px",
-              padding: "18px",
-              borderRadius: "20px",
-              background:
-                "rgba(255,255,255,0.05)",
-              backdropFilter: "blur(12px)",
-            }}
-          >
-            <Timeline
-              duration={duration}
-              currentTime={currentTime}
-              onSeek={seekToEvent}
-            />
-
-            {/* EVENT NAVIGATION */}
-            <div
-              style={{
-                display: "flex",
-                justifyContent:
-                  "space-between",
-                alignItems: "center",
-                marginTop: "20px",
-              }}
-            >
-              <button
-                onClick={prevEvent}
-                style={navButton}
-              >
-                ⏮ Previous Event
-              </button>
-
-              <div
-                style={{
-                  opacity: 0.7,
-                  fontSize: "15px",
-                }}
-              >
-                ⏱{" "}
-                {Math.floor(currentTime)}
-                s
-              </div>
-
-              <button
-                onClick={nextEvent}
-                style={navButton}
-              >
-                ⏭ Next Event
-              </button>
-            </div>
-          </div>
-
-          {/* EVENT LOGS */}
-          <div
-            style={{
-              marginTop: "20px",
-            }}
-          >
-            <EventLogs
-              onSeek={seekToEvent}
-            />
-            <Highlights />
-          </div>
-        </div>
-
-        {/* RIGHT SIDEBAR */}
-        <div
-          style={{
-            padding:
-              "20px 18px 20px 0px",
-          }}
-        >
-          <Sidebar/>
-        </div>
-      </div>
+    <div
+      style={{
+        fontSize: "18px",
+        marginTop: "-5px",
+      }}
+    >
+      10
     </div>
-  );
+  </button>
+
+  {/* PLAY / PAUSE */}
+  <button
+    onClick={togglePlay}
+    style={{
+      ...overlayButton,
+      width: "90px",
+      height: "90px",
+      fontSize: "34px",
+    }}
+  >
+    {isPlaying ? "❚❚" : "▶"}
+  </button>
+
+  {/* FORWARD */}
+  <button
+    onClick={forward10}
+    style={overlayButton}
+  >
+    ↻
+
+    <div
+      style={{
+        fontSize: "18px",
+        marginTop: "-5px",
+      }}
+    >
+      10
+    </div>
+  </button>
+</div>
+</div>
+
+{/* TIMELINE */}
+<div
+  style={{
+    marginTop: "18px",
+    padding: "18px",
+    borderRadius: "20px",
+    background:
+      "rgba(255,255,255,0.05)",
+    backdropFilter: "blur(12px)",
+  }}
+>
+  <Timeline
+    duration={duration}
+    currentTime={currentTime}
+    onSeek={seekToEvent}
+  />
+
+  {/* EVENT NAVIGATION */}
+  <div
+    style={{
+      display: "flex",
+      justifyContent:
+        "space-between",
+      alignItems: "center",
+      marginTop: "20px",
+    }}
+  >
+    {/* PREVIOUS */}
+    <button
+      onClick={prevEvent}
+      style={navButton}
+    >
+      ⏮ Previous Event
+    </button>
+
+    {/* CENTER */}
+    <div
+      style={{
+        display: "flex",
+        gap: "14px",
+        alignItems: "center",
+      }}
+    >
+      {/* CURRENT TIME */}
+      <div
+        style={{
+          opacity: 0.7,
+          fontSize: "15px",
+        }}
+      >
+        ⏱{" "}
+        {Math.floor(currentTime)}s
+      </div>
+
+      {/* FULLSCREEN */}
+      <button
+        onClick={() => {
+          if (
+            videoRef.current
+              ?.requestFullscreen
+          ) {
+            videoRef.current.requestFullscreen();
+          }
+        }}
+        style={{
+          border: "none",
+          padding: "8px 12px",
+          borderRadius: "10px",
+          background:
+            "rgba(255,255,255,0.08)",
+          color: "white",
+          cursor: "pointer",
+        }}
+      >
+        ⛶ Fullscreen
+      </button>
+    </div>
+
+    {/* NEXT */}
+    <button
+      onClick={nextEvent}
+      style={navButton}
+    >
+      ⏭ Next Event
+    </button>
+  </div>
+</div>
+
+{/* EVENT LOGS */}
+<div
+  style={{
+    marginTop: "20px",
+  }}
+>
+  <EventLogs
+    onSeek={seekToEvent}
+  />
+
+  <Highlights />
+</div>
+</div>
+
+{/* RIGHT SIDEBAR */}
+<div
+  style={{
+    padding:
+      "20px 18px 20px 0px",
+  }}
+>
+  <Sidebar />
+</div>
+</div>
+</div>
+);
 };
 
-// OVERLAY BUTTON STYLE
+/* OVERLAY BUTTON STYLE */
 const overlayButton = {
-  width: "78px",
-  height: "78px",
-  borderRadius: "50%",
-  border: "none",
-  background:
-    "rgba(0,0,0,0.45)",
-  color: "white",
-  cursor: "pointer",
-  fontSize: "34px",
-  backdropFilter: "blur(10px)",
-  display: "flex",
-  flexDirection: "column" as const,
-  justifyContent: "center",
-  alignItems: "center",
-  transition: "0.3s",
+width: "78px",
+height: "78px",
+borderRadius: "50%",
+border: "none",
+background:
+  "rgba(0,0,0,0.45)",
+color: "white",
+cursor: "pointer",
+fontSize: "34px",
+backdropFilter: "blur(10px)",
+display: "flex",
+flexDirection: "column" as const,
+justifyContent: "center",
+alignItems: "center",
+transition: "0.3s",
 };
 
-// NAVIGATION BUTTONS
+/* NAV BUTTON */
 const navButton = {
-  border: "none",
-  padding: "12px 18px",
-  borderRadius: "12px",
-  background:
-    "linear-gradient(90deg,#ff7b00,#ffb700)",
-  color: "black",
-  fontWeight: "bold",
-  cursor: "pointer",
+border: "none",
+padding: "12px 18px",
+borderRadius: "12px",
+background:
+  "linear-gradient(90deg,#ff7b00,#ffb700)",
+color: "black",
+fontWeight: "bold",
+cursor: "pointer",
 };
 
 export default VideoPlayer;
