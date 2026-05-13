@@ -108,6 +108,11 @@ const VideoPlayer = () => {
     };
   }, []);
 
+  const [
+  currentEventIndex,
+  setCurrentEventIndex,
+] = useState(0);
+
   // SEEK TO EVENT
   const seekToEvent = (
   time: number
@@ -140,30 +145,41 @@ const VideoPlayer = () => {
 
   // NEXT EVENT
   const nextEvent = () => {
-  const next =
-    events.find(
-      (e) =>
-        e.time >
-        currentTime
+  const nextIndex =
+    currentEventIndex + 1;
+
+  if (
+    nextIndex < events.length
+  ) {
+    const nextEvent =
+      events[nextIndex];
+
+    seekToEvent(
+      nextEvent.time
     );
 
-  if (next) {
-    seekToEvent(next.time);
+    setCurrentEventIndex(
+      nextIndex
+    );
   }
 };
 
   // PREVIOUS EVENT
   const prevEvent = () => {
-  const prev = [...events]
-    .reverse()
-    .find(
-      (e) =>
-        e.time <
-        currentTime
+  const prevIndex =
+    currentEventIndex - 1;
+
+  if (prevIndex >= 0) {
+    const prevEvent =
+      events[prevIndex];
+
+    seekToEvent(
+      prevEvent.time
     );
 
-  if (prev) {
-    seekToEvent(prev.time);
+    setCurrentEventIndex(
+      prevIndex
+    );
   }
 };
 
