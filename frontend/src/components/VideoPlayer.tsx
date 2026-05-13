@@ -108,15 +108,10 @@ const VideoPlayer = () => {
     };
   }, []);
 
-  const [
-  currentEventIndex,
-  setCurrentEventIndex,
-] = useState(0);
-
   // SEEK TO EVENT
   const seekToEvent = (
   time: number
-    ) => {
+  ) => {
   if (!videoRef.current) return;
 
   const video =
@@ -145,41 +140,30 @@ const VideoPlayer = () => {
 
   // NEXT EVENT
   const nextEvent = () => {
-  const nextIndex =
-    currentEventIndex + 1;
-
-  if (
-    nextIndex < events.length
-  ) {
-    const nextEvent =
-      events[nextIndex];
-
-    seekToEvent(
-      nextEvent.time
+  const next =
+    events.find(
+      (e) =>
+        e.time >
+        currentTime
     );
 
-    setCurrentEventIndex(
-      nextIndex
-    );
+  if (next) {
+    seekToEvent(next.time);
   }
 };
 
   // PREVIOUS EVENT
   const prevEvent = () => {
-  const prevIndex =
-    currentEventIndex - 1;
-
-  if (prevIndex >= 0) {
-    const prevEvent =
-      events[prevIndex];
-
-    seekToEvent(
-      prevEvent.time
+  const prev = [...events]
+    .reverse()
+    .find(
+      (e) =>
+        e.time <
+        currentTime
     );
 
-    setCurrentEventIndex(
-      prevIndex
-    );
+  if (prev) {
+    seekToEvent(prev.time);
   }
 };
 
