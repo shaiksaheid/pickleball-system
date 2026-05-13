@@ -18,7 +18,7 @@ const Highlights = () => {
 
       onClick={() =>
         window.location.href =
-          "https://pickleball-system-shah.vercel.app/highlights"
+          "https://pickleball-system-shah.vercel.app/clips/highlights.mp4"
       }
     >
       {/* PREVIEW IMAGE */}
