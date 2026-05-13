@@ -33,7 +33,7 @@ const HighlightsPage = () => {
       </p>
 
       <video
-        src="/clips/highlights.mp4"
+        src="https://pickleball-system-qw5u.onrender.com/clips/highlights.mp4"
         controls
         autoPlay
         style={{
