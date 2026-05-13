@@ -18,8 +18,6 @@ const VideoPlayer = () => {
   const [currentTime, setCurrentTime] =
     useState(0);
 
-  const [currentEvent, setCurrentEvent] =
-    useState(0);
 
   const [isPlaying, setIsPlaying] =
     useState(true);
@@ -111,36 +109,63 @@ const VideoPlayer = () => {
   }, []);
 
   // SEEK TO EVENT
-  const seekToEvent = (time: number) => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = time;
-    }
-  };
+  const seekToEvent = (
+  time: number
+    ) => {
+  if (!videoRef.current) return;
+
+  const video =
+    videoRef.current;
+
+  // Ensure metadata loaded
+  if (
+    video.readyState >= 1
+  ) {
+    video.currentTime = time;
+
+    video.play();
+  } else {
+    video.addEventListener(
+      "loadedmetadata",
+      () => {
+        video.currentTime =
+          time;
+
+        video.play();
+      },
+      { once: true }
+    );
+  }
+};
 
   // NEXT EVENT
   const nextEvent = () => {
-    if (
-      currentEvent <
-      events.length - 1
-    ) {
-      const next = currentEvent + 1;
+  const next =
+    events.find(
+      (e) =>
+        e.time >
+        currentTime
+    );
 
-      setCurrentEvent(next);
-
-      seekToEvent(events[next].time);
-    }
-  };
+  if (next) {
+    seekToEvent(next.time);
+  }
+};
 
   // PREVIOUS EVENT
   const prevEvent = () => {
-    if (currentEvent > 0) {
-      const prev = currentEvent - 1;
+  const prev = [...events]
+    .reverse()
+    .find(
+      (e) =>
+        e.time <
+        currentTime
+    );
 
-      setCurrentEvent(prev);
-
-      seekToEvent(events[prev].time);
-    }
-  };
+  if (prev) {
+    seekToEvent(prev.time);
+  }
+};
 
   // PLAY / PAUSE
   const togglePlay = () => {
