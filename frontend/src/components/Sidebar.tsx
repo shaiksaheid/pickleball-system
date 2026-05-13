@@ -18,7 +18,7 @@ const Sidebar = () => {
     key={event.id}
     onClick={() =>
       window.location.href =
-        `/replay/${event.id}`
+        `https://pickleball-system-shah.vercel.app/replay/${event.id}`
     }
           style={{
             background:
